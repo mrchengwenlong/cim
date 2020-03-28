@@ -16,31 +16,31 @@ import java.util.concurrent.TimeUnit;
 public class CommonTest {
 
 
-    @Test
-    public void test2(){
-        System.out.println(LocalDate.now().toString());
-        System.out.println(LocalTime.now().withNano(0).toString());
-    }
+//    @Test
+//    public void test2(){
+//        System.out.println(LocalDate.now().toString());
+//        System.out.println(LocalTime.now().withNano(0).toString());
+//    }
 
-    @Test
-    public void test() throws InterruptedException {
-
-
-        System.out.println(is2(9));
-
-        System.out.println(Integer.bitCount(64-1));
-
-        int target = 1569312600 ;
-        int mod = 64 ;
-        System.out.println(target % mod);
-
-        System.out.println(mod(target,mod));
-        System.out.println("============");
-
-        System.out.println(cycleNum(256,64)) ;
-
-        cycle();
-    }
+//    @Test
+//    public void test() throws InterruptedException {
+//
+////
+////        System.out.println(is2(9));
+////
+////        System.out.println(Integer.bitCount(64-1));
+////
+////        int target = 1569312600 ;
+////        int mod = 64 ;
+////        System.out.println(target % mod);
+////
+////        System.out.println(mod(target,mod));
+////        System.out.println("============");
+////
+////        System.out.println(cycleNum(256,64)) ;
+////
+////        cycle();
+//    }
 
 
     private int mod(int target, int mod){

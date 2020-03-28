@@ -125,19 +125,19 @@ public class SortArrayMapTest {
     int count = 1000000 ;
     @Test
     public void add5() {
-        SortArrayMap map = new SortArrayMap() ;
-
-
-        long star = System.currentTimeMillis() ;
-        for (int i = 0; i < count; i++) {
-            double d = Math.random();
-            int ran = (int)(d*100);
-            map.add(Long.valueOf(i + ran) ,"127.0.0." + i);
-        }
-        map.sort();
-        long end = System.currentTimeMillis() ;
-        System.out.println("排序耗时 " + (end -star));
-        System.out.println(map.size());
+//        SortArrayMap map = new SortArrayMap() ;
+//
+//
+//        long star = System.currentTimeMillis() ;
+//        for (int i = 0; i < count; i++) {
+//            double d = Math.random();
+//            int ran = (int)(d*100);
+//            map.add(Long.valueOf(i + ran) ,"127.0.0." + i);
+//        }
+//        map.sort();
+//        long end = System.currentTimeMillis() ;
+//        System.out.println("排序耗时 " + (end -star));
+//        System.out.println(map.size());
 
 
 
