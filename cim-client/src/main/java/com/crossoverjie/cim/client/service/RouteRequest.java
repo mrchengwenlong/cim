@@ -33,6 +33,13 @@ public interface RouteRequest {
     void sendP2PMsg(P2PReqVO p2PReqVO)throws Exception;
 
     /**
+     * 支持离线私聊
+     * @param p2PReqVO
+     * @throws Exception
+     */
+    void SendP2PStoreMsg(P2PReqVO p2PReqVO) throws Exception;
+
+    /**
      * 获取服务器
      * @return 服务ip+port
      * @param loginReqVO
@@ -49,5 +56,6 @@ public interface RouteRequest {
 
 
     void offLine() ;
+
 
 }

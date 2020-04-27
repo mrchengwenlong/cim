@@ -45,6 +45,9 @@ public class RouteRequestImpl implements RouteRequest {
     @Value("${cim.p2p.route.request.url}")
     private String p2pRouteRequestUrl;
 
+    @Value("${cim.p2pStore.route.request.url}")
+    private String p2pRouteStoreRequestUrl;
+
     @Value("${cim.server.route.request.url}")
     private String serverRouteLoginUrl;
 
@@ -107,6 +110,43 @@ public class RouteRequestImpl implements RouteRequest {
             //选择的账号不存在
             if (baseResponse.getCode().equals(StatusEnum.OFF_LINE.getCode())){
                 LOGGER.error(p2PReqVO.getReceiveUserId() + ":" + StatusEnum.OFF_LINE.getMessage());
+            }
+
+        }finally {
+            body.close();
+        }
+    }
+
+    @Override
+    public void SendP2PStoreMsg(P2PReqVO p2PReqVO) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("msg",p2PReqVO.getMsg());
+        jsonObject.put("userId",p2PReqVO.getUserId());
+        jsonObject.put("receiveUserId",p2PReqVO.getReceiveUserId());
+        RequestBody requestBody = RequestBody.create(mediaType,jsonObject.toString());
+
+        Request request = new Request.Builder()
+                .url(p2pRouteStoreRequestUrl)
+                .post(requestBody)
+                .build();
+
+        Response response = okHttpClient.newCall(request).execute() ;
+        if (!response.isSuccessful()){
+            throw new IOException("Unexpected code " + response);
+        }
+
+        ResponseBody body = response.body();
+        try {
+            String json = body.string() ;
+            BaseResponse baseResponse = JSON.parseObject(json, BaseResponse.class);
+
+            //选择的账号不存在
+            if (baseResponse.getCode().equals(StatusEnum.SUCCESS.getCode())){
+                LOGGER.error(p2PReqVO.getReceiveUserId() + ":" + StatusEnum.SUCCESS.getMessage());
+            }else if (baseResponse.getCode().equals(StatusEnum.SUCCESS_OFFLINE.getCode())){
+                LOGGER.error(p2PReqVO.getReceiveUserId() + ":" + StatusEnum.SUCCESS_OFFLINE.getMessage());
+            }else if (baseResponse.getCode().equals(StatusEnum.FAIL.getCode())){
+                LOGGER.error(p2PReqVO.getReceiveUserId() + ":" + StatusEnum.FAIL.getMessage());
             }
 
         }finally {

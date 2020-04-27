@@ -32,6 +32,12 @@ public interface MsgHandle {
      */
     void p2pChat(P2PReqVO p2PReqVO) throws Exception;
 
+    /**
+     * 离线消息
+     * @param p2PReqVO
+     * @throws Exception
+     */
+    void p2pStoreChat(P2PReqVO p2PReqVO) throws Exception;
 
     // TODO: 2018/12/26 后续对消息的处理可以优化为责任链模式
     /**
